@@ -52,7 +52,10 @@ if s:configuration.style ==# 'night'
         \ 'blue':       ['#7AA2F7',   '110',  'Blue'],
         \ 'purple':     ['#ad8ee6',   '176',  'Magenta'],
         \ 'grey':       ['#444B6A',   '246',  'LightGrey'],
-        \ 'none':       ['NONE',      'NONE', 'NONE']
+        \ 'none':       ['NONE',      'NONE', 'NONE'],
+        \ 'info_text':  ['#444B6A',   '22',   'InfoText'],
+        \ 'warning_text':['#E0AF68',   '179',  'WarningText'],
+        \ 'error_text': ['#803d49',   '203',  'ErrorText'],
         \ }
 elseif s:configuration.style ==# 'storm'
   let s:palette = {
@@ -76,7 +79,10 @@ elseif s:configuration.style ==# 'storm'
         \ 'blue':       ['#7AA2F7',   '110',  'Blue'],
         \ 'purple':     ['#ad8ee6',   '176',  'Magenta'],
         \ 'grey':       ['#444B6A',   '246',  'LightGrey'],
-        \ 'none':       ['NONE',      'NONE', 'NONE']
+        \ 'none':       ['NONE',      'NONE', 'NONE'],
+        \ 'info_text':  ['#444B6A',   '22',   'InfoText'],
+        \ 'warning_text':['#E0AF68',   '179',  'WarningText'],
+        \ 'error_text': ['#803d49',   '203',  'ErrorText'],
         \ }
 endif
 
@@ -319,6 +325,10 @@ call s:HL('Yellow', s:palette.yellow, s:palette.none)
 call s:HL('Green', s:palette.green, s:palette.none)
 call s:HL('Blue', s:palette.blue, s:palette.none)
 call s:HL('Purple', s:palette.purple, s:palette.none)
+call s:HL('DarkRed', s:palette.diff_red, s:palette.none)
+call s:HL('InfoText', s:palette.info_text, s:palette.none, 'italic,bold')
+call s:HL('WarningText', s:palette.warning_text, s:palette.none, 'italic,bold')
+call s:HL('ErrorText', s:palette.error_text, s:palette.none, 'italic,bold')
 if s:configuration.enable_italic
   call s:HL('RedItalic', s:palette.red, s:palette.none, 'italic')
   call s:HL('BlueItalic', s:palette.blue, s:palette.none, 'italic')
@@ -1526,9 +1536,9 @@ else
   call s:HL('ALEWarningSign', s:palette.yellow, s:palette.bg1)
   call s:HL('ALEInfoSign', s:palette.blue, s:palette.bg1)
 endif
-highlight! link ALEVirtualTextError Grey
-highlight! link ALEVirtualTextWarning Grey
-highlight! link ALEVirtualTextInfo Grey
+highlight! link ALEVirtualTextError ErrorText
+highlight! link ALEVirtualTextWarning WarningText
+highlight! link ALEVirtualTextInfo InfoText
 highlight! link ALEVirtualTextStyleError ALEVirtualTextError
 highlight! link ALEVirtualTextStyleWarning ALEVirtualTextWarning
 " }}}
@@ -1833,4 +1843,4 @@ if (has('termguicolors') && &termguicolors) || has('gui_running')
 endif
 " }}}
 
-" vim: set sw=2 ts=2 sts=2 et tw=80 ft=vim fdm=marker fmr={{{,}}}:
+"
