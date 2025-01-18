@@ -29,11 +29,11 @@ let s:configuration.cursor = get(g:, 'tokyonight_cursor', 'auto')
 let s:configuration.current_word = get(g:, 'tokyonight_current_word', get(g:, 'tokyonight_transparent_background', 0) == 0 ? 'grey background' : 'bold')
 " }}}
 " Palette: {{{
-"
+" allow custom bg color, i.e. `let g:tokyonight_background_color = '#222436'`
 if s:configuration.style ==# 'night'
   let s:palette = {
         \ 'black':      ['#06080a',   '237',  'DarkGrey'],
-        \ 'bg0':        ['#1a1b26',   '235',  'Black'],
+        \ 'bg0':        [s:configuration.background_color ==# '' ? '#1a1b26' : s:configuration.background_color,   '235',  'Black'],
         \ 'bg1':        ['#232433',   '236',  'DarkGrey'],
         \ 'bg2':        ['#2a2b3d',   '236',  'DarkGrey'],
         \ 'bg3':        ['#32344a',   '237',  'DarkGrey'],
@@ -60,7 +60,7 @@ if s:configuration.style ==# 'night'
 elseif s:configuration.style ==# 'storm'
   let s:palette = {
         \ 'black':      ['#06080a',   '237',  'DarkGrey'],
-        \ 'bg0':        ['#24283b',   '235',  'Black'],
+        \ 'bg0':        [s:configuration.background_color ==# '' ? '#24283b' : s:configuration.background_color,   '235',  'Black'],
         \ 'bg1':        ['#282d42',   '236',  'DarkGrey'],
         \ 'bg2':        ['#2f344d',   '236',  'DarkGrey'],
         \ 'bg3':        ['#333954',   '237',  'DarkGrey'],
@@ -85,8 +85,6 @@ elseif s:configuration.style ==# 'storm'
         \ 'error_text': ['#803d49',   '203',  'ErrorText'],
         \ }
 endif
-
-" }}}
 " Function: {{{
 " call s:HL(group, foreground, background)
 " call s:HL(group, foreground, background, gui, guisp)
